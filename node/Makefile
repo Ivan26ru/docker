@@ -1,4 +1,14 @@
-start:
-	docker run -p 5050:5050 -d test2
+run:
+	docker run -p 5050:5050 -d --rm --name reactcontainer ireact
+run-dev:
+	docker run -p 5050:5050 -d --rm --name reactcontainer  -v /app/node_modules -v "/Users/ivanpisarenko/www/docker/node:/app" ireact
 stop:
-	docker stop test2
+	docker stop reactcontainer
+ps:
+	docker ps
+psa:
+	docker ps -a
+build:
+	docker build . -t imagereact
+images:
+	docker images
