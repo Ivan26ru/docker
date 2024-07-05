@@ -19,8 +19,8 @@ http://0.0.0.0:8000/ - host
 PHP_IDE_CONFIG: serverName=DockerProject1
 ```
 
-Данные:
-http://127.0.0.1:8882/ - host
-<u>docker-compose/php+nginx/docker-compose.yml:10</u> - менять порт тут
+### php+nginx+db Лучший образ
+use: php, nginx, db
+Данные вынесены в переменные, там смотреть основные настройки
 
 ### 
