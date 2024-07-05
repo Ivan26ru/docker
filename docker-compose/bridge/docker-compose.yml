@@ -1,0 +1,7 @@
+services:
+  bridge-nginx:
+    image: nginx:1.21
+    container_name: bridge-nginx-test
+    ports:
+# Для работы нужно выполнить lo0 alias 172.17.0.1 netmask 0xff000000
+      - "172.17.0.1:8080:80"
