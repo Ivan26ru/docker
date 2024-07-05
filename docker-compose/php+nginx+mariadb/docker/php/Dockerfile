@@ -23,4 +23,9 @@ RUN usermod -a -G www-data ${UNAME}
 
 COPY --from=composer:2.7.2 /usr/bin/composer /usr/bin/composer
 
+COPY ./app .
+COPY ./entrypoint.sh /entrypoint.sh
+
 USER ${UNAME}
+
+ENTRYPOINT ["/entrypoint.sh"]
