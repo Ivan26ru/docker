@@ -16,6 +16,10 @@ services:
   php-fpm:
     build:
       context: docker/php
+      args:
+        UID: ${UID}
+        GID: ${GID}
+        UNAME: ${UNAME}
     volumes:
       - ./app/:/var/www/app
       - ./docker/php/conf.d:/usr/local/etc/php/conf.d/
