@@ -1,9 +1,0 @@
-services:
-  bridge-nginx:
-    image: nginx:1.21
-    container_name: ${PROJECT_NAME}-billing-nginx
-    restart: always
-    environment:
-      BACKEND: "billing-app"
-    ports:
-      - "${DOCKER_BRIDGE_IP}:${NGINX_PORT}:80"
