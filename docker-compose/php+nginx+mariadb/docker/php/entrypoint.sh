@@ -7,4 +7,4 @@ sudo chown -R www-data:www-data /var/www/storage
 sudo chown -R www-data:www-data /var/www/bootstrap/cache
 
 php artisan key:generate
-exec sudo "${@-php-fpm}"
+exec "${@-php-fpm}"
