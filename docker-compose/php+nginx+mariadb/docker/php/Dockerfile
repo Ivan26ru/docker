@@ -11,6 +11,20 @@ RUN apt-get update && \
     nano unzip zip libxml2-dev sudo nodejs npm && \
     docker-php-ext-install pdo_mysql
 
+# php
+RUN apt-get update && apt-get install -y \
+    libicu-dev \
+    libonig-dev \
+    libzip-dev \
+    zip \
+    unzip \
+    git \
+    && docker-php-ext-configure intl \
+    && docker-php-ext-install intl \
+    && docker-php-ext-install mbstring \
+    && docker-php-ext-install zip
+RUN docker-php-ext-enable intl mbstring zip
+
 # Debugger
 RUN pecl install xdebug && docker-php-ext-enable xdebug
 
