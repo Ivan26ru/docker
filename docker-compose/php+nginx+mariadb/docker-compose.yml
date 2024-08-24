@@ -23,7 +23,7 @@ services:
         UNAME: ${UNAME}
     volumes:
       - ./app/:/var/www/app
-      - ./docker/php/conf.d:/usr/local/etc/php/conf.d/
+      - ./docker/php/conf.d/zzz-xdebug.ini:/usr/local/etc/php/conf.d/zzz-xdebug.ini
     extra_hosts:
       - "host.docker.internal:host-gateway"
     environment:

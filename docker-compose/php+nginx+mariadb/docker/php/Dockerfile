@@ -1,5 +1,7 @@
 FROM php:8.3-fpm
 
+#RUN mkdir -p /var/www/app
+
 WORKDIR /var/www/app
 
 ARG UID
@@ -8,29 +10,41 @@ ARG UNAME
 
 RUN apt-get update && \
     apt-get install --no-install-recommends -y \
-    nano unzip zip libxml2-dev sudo nodejs npm && \
-    docker-php-ext-install pdo_mysql
+    nano libxml2-dev sudo nodejs npm
 
 # php
-RUN apt-get update && apt-get install -y \
-    libicu-dev \
-    libonig-dev \
-    libzip-dev \
-    zip \
-    unzip \
-    git \
-    && docker-php-ext-configure intl \
-    && docker-php-ext-install intl \
-    && docker-php-ext-install mbstring \
-    && docker-php-ext-install zip \
+RUN apt-get update
 
-RUN docker-php-ext-enable intl mbstring zip
+RUN apt-get install -y
+RUN apt-get install -y libicu-dev
+RUN apt-get install -y libonig-dev
+RUN apt-get install -y libzip-dev
+RUN apt-get install -y libpng-dev
+RUN apt-get install -y libpq-dev
+RUN apt-get install -y zlib1g-dev
+RUN apt-get install -y zip
+RUN apt-get install -y unzip
+RUN apt-get install -y git
+RUN apt-get install -y mariadb-client
 
-RUN apt-get update -y && \
-    apt-get install -y --no-install-recommends libpq-dev zlib1g-dev libpng-dev libzip-dev mariadb-client
+RUN docker-php-ext-configure intl
+RUN docker-php-ext-install intl
+RUN docker-php-ext-install mbstring
+RUN docker-php-ext-install zip
+RUN docker-php-ext-install mysqli
+RUN docker-php-ext-install pdo pdo_mysql
+RUN docker-php-ext-install pcntl
+RUN docker-php-ext-install gd
 
-RUN docker-php-ext-install pdo_mysql pcntl gd
-RUN docker-php-ext-enable pdo_mysql pcntl gd
+RUN docker-php-ext-enable  \
+    intl  \
+    mbstring  \
+    zip  \
+    pdo \
+    pdo_mysql  \
+    pcntl  \
+    gd  \
+    mysqli
 
 # Debugger
 RUN pecl install xdebug && docker-php-ext-enable xdebug
