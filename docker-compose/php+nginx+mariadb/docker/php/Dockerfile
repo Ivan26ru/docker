@@ -22,13 +22,15 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure intl \
     && docker-php-ext-install intl \
     && docker-php-ext-install mbstring \
-    && docker-php-ext-install zip
+    && docker-php-ext-install zip \
+
 RUN docker-php-ext-enable intl mbstring zip
 
 RUN apt-get update -y && \
     apt-get install -y --no-install-recommends libpq-dev zlib1g-dev libpng-dev libzip-dev mariadb-client
 
 RUN docker-php-ext-install pdo_mysql pcntl gd
+RUN docker-php-ext-enable pdo_mysql pcntl gd
 
 # Debugger
 RUN pecl install xdebug && docker-php-ext-enable xdebug
