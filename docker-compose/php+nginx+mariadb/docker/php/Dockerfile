@@ -22,10 +22,14 @@ RUN apt-get install -y libzip-dev
 RUN apt-get install -y libpng-dev
 RUN apt-get install -y libpq-dev
 RUN apt-get install -y zlib1g-dev
+RUN apt-get install -y libfreetype6-dev
+RUN apt-get install -y libjpeg62-turbo-dev
 RUN apt-get install -y zip
 RUN apt-get install -y unzip
 RUN apt-get install -y git
 RUN apt-get install -y mariadb-client
+RUN apt-get install -y libmagickwand-dev
+RUN apt-get install -y libmagickcore-dev
 
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install intl
@@ -35,6 +39,9 @@ RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install pdo pdo_mysql
 RUN docker-php-ext-install pcntl
 RUN docker-php-ext-install gd
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg
+RUN docker-php-ext-install -j$(nproc) gd
+RUN docker-php-ext-install exif
 
 RUN docker-php-ext-enable  \
     intl  \
@@ -44,7 +51,8 @@ RUN docker-php-ext-enable  \
     pdo_mysql  \
     pcntl  \
     gd  \
-    mysqli
+    mysqli \
+    exif
 
 # Debugger
 RUN pecl install xdebug && docker-php-ext-enable xdebug
