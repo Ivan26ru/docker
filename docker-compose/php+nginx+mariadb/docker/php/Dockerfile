@@ -1,8 +1,8 @@
 FROM php:8.3-fpm
 
-#RUN mkdir -p /var/www/app
+#RUN mkdir -p /var/www/backend
 
-WORKDIR /var/www/app
+WORKDIR /var/www/backend
 
 ARG UID
 ARG GID
@@ -68,7 +68,7 @@ RUN usermod -a -G www-data ${UNAME}
 
 COPY --from=composer:2.7.2 /usr/bin/composer /usr/bin/composer
 
-COPY ./app .
+COPY ./backend .
 COPY ./entrypoint.sh /entrypoint.sh
 
 USER ${UNAME}
