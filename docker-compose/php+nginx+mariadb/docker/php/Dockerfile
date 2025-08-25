@@ -13,8 +13,6 @@ RUN apt-get update && \
     nano libxml2-dev sudo nodejs npm
 
 # php
-RUN apt-get update
-
 RUN apt-get install -y
 RUN apt-get install -y libicu-dev
 RUN apt-get install -y libonig-dev
